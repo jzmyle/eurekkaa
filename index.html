@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Pontos</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Adicionando fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=High+Cruiser:wght@400;700&family=Rock+Salt&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Tela inicial -->
+    <div id="home-screen" class="screen">
+        <h1>
+            EUREKA
+            <img src="https://media-public.canva.com/kAX6c/MAFMR5kAX6c/1/tl.png" alt="Light Bulb" style="vertical-align: middle; margin-left: 10px; width: 40px; height: 40px;">
+        </h1>
+        <button onclick="selectUserType('aluno')">Entrar como Aluno</button>
+        <button onclick="selectUserType('professor')">Entrar como Professor</button>
+        <img src="https://media-public.canva.com/Lwm4k/MAFYjALwm4k/1/wm_s.png" alt="Imagem Inicial" class="home-image"> <!-- Imagem adicionada -->
+    </div>
+
+    <!-- Tela de login do professor -->
+    <div id="professor-login-screen" class="screen">
+        <h2>Professor Login</h2>
+        <input type="password" id="professor-code" placeholder="Digite o código">
+        <button onclick="verifyProfessorCode()">Entrar</button>
+        <!-- Botão Voltar -->
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <!-- Tela de seleção de turmas -->
+    <div id="class-selection-screen" class="screen">
+        <h2>Turmas</h2>
+        <div id="class-container">
+            <!-- Coluna 1º Ano -->
+            <div class="class-column red-border">
+                <button class="class-button" onclick="selectClass('1a')">1a</button>
+                <button class="class-button" onclick="selectClass('1b')">1b</button>
+                <button class="class-button" onclick="selectClass('1c')">1c</button>
+                <button class="class-button" onclick="selectClass('1d')">1d</button>
+            </div>
+            <!-- Coluna 2º Ano -->
+            <div class="class-column green-border">
+                <button class="class-button" onclick="selectClass('2a')">2a</button>
+                <button class="class-button" onclick="selectClass('2b')">2b</button>
+                <button class="class-button" onclick="selectClass('2c')">2c</button>
+                <button class="class-button" onclick="selectClass('2d')">2d</button>
+            </div>
+            <!-- Coluna 3º Ano -->
+            <div class="class-column yellow-border">
+                <button class="class-button" onclick="selectClass('3a')">3a</button>
+                <button class="class-button" onclick="selectClass('3b')">3b</button>
+                <button class="class-button" onclick="selectClass('3c')">3c</button>
+                <button class="class-button" onclick="selectClass('3d')">3d</button>
+            </div>
+        </div>
+        <!-- Botão Voltar -->
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <!-- Tela de gerenciamento de pontos -->
+    <div id="points-management-screen" class="screen">
+        <h2 id="class-name"></h2>
+        <button onclick="showPositiveActions()">Positivo</button>
+        <button onclick="showNegativeActions()">Negativo</button>
+        <div>Pontuação da Turma: <span id="class-points"></span></div>
+        <textarea id="annotations" placeholder="Anotações do Professor"></textarea>
+        <button onclick="saveAnnotations()">Salvar Anotações</button> <!-- Botão para salvar anotações -->
+        <!-- Botão Voltar -->
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <!-- Tela de ações positivas -->
+    <div id="positive-actions-screen" class="screen">
+        <h2>Positivo</h2>
+        <div class="actions-container">
+            <div class="action-column">
+                <button class="action-button" onclick="addPoints(15)">Limpar Mesa +15</button>
+                <button class="action-button" onclick="addPoints(20)">Tirar Lixo do Chão +20</button>
+                <button class="action-button" onclick="addPoints(40)">Varrer o Chão +40</button>
+            </div>
+            <div class="action-column">
+                <button class="action-button" onclick="addPoints(50)">Reutilização +50</button>
+                <button class="action-button" onclick="addPoints(20)">Ao Sair Manter a Sala Organizada +20</button>
+                <button class="action-button" onclick="showCustomPositiveAction()">Atividade Positiva Não Listada</button>
+            </div>
+        </div>
+        <!-- Botão Voltar -->
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <!-- Tela de ações positivas personalizadas -->
+    <div id="custom-positive-action-screen" class="screen">
+        <h2>Atividade Positiva Não Listada</h2>
+        <input type="text" id="custom-positive-description" placeholder="Descrição da Atividade">
+        <input type="number" id="custom-positive-points" placeholder="Pontuação" min="1">
+        <button onclick="addCustomPoints()">Adicionar Pontuação</button>
+        <!-- Botão Voltar -->
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <!-- Tela de ações negativas -->
+    <div id="negative-actions-screen" class="screen">
+        <h2>Negativo</h2>
+        <div class="actions-container">
+            <div class="action-column">
+                <button class="action-button" onclick="subtractPoints(15)">Deixar Lixo embaixo da Mesa -15</button>
+                <button class="action-button" onclick="subtractPoints(20)">Jogar Lixo no Chão -20</button>
+                <button class="action-button" onclick="subtractPoints(20)">Sala Desorganizada ao Sair -20</button>
+            </div>
+            <div class="action-column">
+                <button class="action-button" onclick="subtractPoints(10)">Descarte Inadequado do Lixo -10</button>
+                <button class="action-button" onclick="subtractPoints(20)">Desperdício de Água -20</button>
+                <button class="action-button" onclick="subtractPoints(5)">Desperdício de Alimento -5</button>
+                <button class="action-button" onclick="subtractPoints(5)">poluição sonora -15</button>
+                <button class="action-button" onclick="showCustomNegativeAction()">Atividade Negativa Não Listada</button>
+            </div>
+        </div>
+        <!-- Botão Voltar -->
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <!-- Tela de ações negativas personalizadas -->
+    <div id="custom-negative-action-screen" class="screen">
+        <h2>Atividade Negativa Não Listada</h2>
+        <input type="text" id="custom-negative-description" placeholder="Descrição da Atividade">
+        <input type="number" id="custom-negative-points" placeholder="Pontuação" min="1">
+        <button onclick="subtractCustomPoints()">Adicionar Pontuação</button>
+        <!-- Botão Voltar -->
+        <button class="back-button" onclick="goBack()">Voltar</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

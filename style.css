@@ -1,0 +1,119 @@
+body {
+    font-family: 'Rock Salt', cursive; /* Fonte principal Rock Salt */
+    background-color: #000;
+    color: #B3FF4E;
+    text-align: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+button,
+input[type="button"], /* Adiciona estilos para botões de entrada */
+input[type="submit"], /* Adiciona estilos para botões de envio */
+input[type="reset"] { /* Adiciona estilos para botões de reset */
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 15px; /* Bordas arredondadas para todos os botões */
+    border: 2px solid;
+    background-color: transparent;
+    color: #B3FF4E;
+    cursor: pointer;
+    font-family: 'Rock Salt', cursive; /* Fonte Rock Salt para botões */
+}
+
+.red-border button,
+.red-border input[type="button"],
+.red-border input[type="submit"],
+.red-border input[type="reset"] {
+    border-color: red;
+}
+
+.green-border button,
+.green-border input[type="button"],
+.green-border input[type="submit"],
+.green-border input[type="reset"] {
+    border-color: green;
+}
+
+.yellow-border button,
+.yellow-border input[type="button"],
+.yellow-border input[type="submit"],
+.yellow-border input[type="reset"] {
+    border-color: yellow;
+}
+
+#annotations {
+    width: 80%;
+    height: 100px;
+    margin: 10px;
+    font-family: 'Rock Salt', cursive; /* Fonte Rock Salt para área de anotações */
+}
+
+/* Estilo para o botão "Voltar" */
+.back-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: #B3FF4E; /* Cor de fundo do botão */
+    color: #000; /* Cor do texto do botão */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 15px; /* Bordas arredondadas para o botão "Voltar" */
+    font-family: 'Rock Salt', cursive; /* Fonte Rock Salt para botão "Voltar" */
+}
+
+.back-button:hover {
+    background-color: #9cd440; /* Cor de fundo do botão ao passar o mouse */
+}
+
+/* Estilo para a tela de ações positivas e negativas */
+.actions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Botões de ação */
+.action-button {
+    padding: 10px;
+    border-radius: 15px; /* Bordas arredondadas para botões de ação */
+    border: 2px solid;
+    background-color: transparent;
+    color: #B3FF4E;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    font-family: 'Rock Salt', cursive; /* Fonte Rock Salt para botões de ação */
+}
+
+/* Modo Aluno */
+.student-mode #custom-positive-action-screen,
+.student-mode #custom-negative-action-screen,
+.student-mode .actions-container .action-column,
+.student-mode #annotations {
+    display: none;
+}
+
+#custom-positive-action-screen,
+#custom-negative-action-screen {
+    display: none;
+}
+
+.screen {
+    display: none;
+}
+
+/* Estilo para a imagem na tela inicial */
+.home-image {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: 180px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    z-index: 1; /* Garante que a imagem existente esteja acima do fundo */
+}
+
+
